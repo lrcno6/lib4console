@@ -28,12 +28,12 @@ void getline(string &str,bool loop=true){
 		read();
 }
 void version(){
-	cout<<"lib4console alpha 1.4.0\n"
+	cout<<"lib4console beta 1.4.0\n"
 		<<"license: GPL-3.0\n"
 		<<"GitHub address: https://github.com/lrcno6/lib4console\n";
 }
 bool main_menu(){
-	cout<<"> ";
+	cout<<"lib4console > ";
 	string command;
 	getline(command,false);
 	if(command=="newid")

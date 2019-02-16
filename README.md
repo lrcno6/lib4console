@@ -1,6 +1,12 @@
-## lib4console
+## lib4console beta 1.4.0
 
 a library manager at console
+
+---
+
+### version content
+
+beta 1.4.0: change it to command style
 
 ---
 
@@ -12,7 +18,7 @@ license: *GPL-3.0*
 
 *lib4console* is a app used to manage a library. You can make an ID for each book and register the lending and returning of all the books intelligently. You can also view unreturned books in chronological order.
 
-It runs everywhere (in theory) (tested on *linux*).
+It runs everywhere (in theory) (tested on *Windows(cl)* and *linux(g++)*).
 
 ---
 
