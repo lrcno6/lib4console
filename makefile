@@ -1,8 +1,11 @@
-lib4console:main.cpp
+lib4console:main.cpp inside.cpp os.h
 	g++ main.cpp -o lib4console -L./libcore -llibcore
-debug:main.cpp
+	g++ inside.cpp -o inside
+debug:main.cpp inside.cpp os.h
 	g++ main.cpp -o lib4console -L./libcore -llibcore -g
+	g++ inside.cpp -o inside -g
 clean:
-	rm lib4console
-windows:
-	cl main.cpp libcore/libcore.lib /EHsc
+	rm lib4console inside
+windows:main.cpp inside.cpp os.h
+	cl main.cpp libcore/libcore.lib /Felib4console /DWIN_OS /EHsc
+	cl inside.cpp /EHsc

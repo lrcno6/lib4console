@@ -27,7 +27,7 @@ It runs everywhere (in theory) (tested on *Windows(cl)* and *linux(g++)*).
 command:
 
 ```bash
-./lib4console [<file>]
+[./]lib4console [<file>]
 ```
 
 ---

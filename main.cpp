@@ -1,11 +1,13 @@
 #include<iostream>
 #include<fstream>
 #include<string>
+#include<vector>
 #include<cstdio>
 #include<cstring>
 #include<cstdlib>
 #include<ctime>
 #include"libcore/library.h"
+#include"os.h"
 using namespace lib;
 using namespace std;
 bool saved=true;
@@ -34,20 +36,40 @@ void version(){
 }
 bool main_menu(){
 	cout<<"lib4console > ";
-	string command;
-	getline(command,false);
+	string cmd;
+	getline(cmd,false);
+	call(cmd);
+	ifstream arg("command");
+	vector<string> argv;
+	while(arg){
+		string s;
+		getline(arg,s);
+		if(!s.empty())
+			argv.push_back(s);
+	}
+	if(argv.empty())
+		return true;
+	string &command=argv[0];
 	if(command=="newid")
 		cout<<Library::new_id(8)<<endl;
 	else if(command=="lend"){
 		string id,name;
-		cout<<"the book's ID: ";
-		do
-			getline(id);
-		while(id.empty());
-		cout<<"borrower: ";
-		do
-			getline(name);
-		while(name.empty());
+		if(argv.size()>1)
+			id=argv[1];
+		else{
+			cout<<"the book's ID: ";
+			do
+				getline(id);
+			while(id.empty());
+		}
+		if(argv.size()>2)
+			id=argv[2];
+		else{
+			cout<<"borrower: ";
+			do
+				getline(name);
+			while(name.empty());
+		}
 		try{
 			library->lend(id,name);
 			saved=false;
@@ -58,10 +80,14 @@ bool main_menu(){
 	}
 	else if(command=="return"){
 		string id;
-		cout<<"the book's ID: ";
-		do
-			getline(id);
-		while(id.empty());
+		if(argv.size()>1)
+			id=argv[1];
+		else{
+			cout<<"the book's ID: ";
+			do
+				getline(id);
+			while(id.empty());
+		}
 		try{
 			library->Return(id);
 			saved=false;
@@ -80,10 +106,14 @@ bool main_menu(){
 	else if(command=="save"){
 		if(!saved){
 			if(name.empty()){
-				cout<<"enter file name: ";
-				do
-					getline(name);
-				while(name.empty());
+				if(argv.size()>1)
+					name=argv[1];
+				else{
+					cout<<"enter file name: ";
+					do
+						getline(name);
+					while(name.empty());
+				}
 			}
 			ofstream fout(name);
 			if(fout.is_open()){
@@ -117,7 +147,7 @@ bool main_menu(){
 			<<"version\tget the version information\n";
 	else if(command=="version")
 		version();
-	else if(!command.empty())
+	else
 		cerr<<"error: command not found\n";
 	return true;
 }
