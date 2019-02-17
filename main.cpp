@@ -30,7 +30,7 @@ void getline(string &str,bool loop=true){
 		read();
 }
 void version(){
-	cout<<"lib4console beta 1.4.0\n"
+	cout<<"lib4console beta 1.4.1\n"
 		<<"license: GPL-3.0\n"
 		<<"GitHub address: https://github.com/lrcno6/lib4console\n";
 }
@@ -63,7 +63,7 @@ bool main_menu(){
 			while(id.empty());
 		}
 		if(argv.size()>2)
-			id=argv[2];
+			name=argv[2];
 		else{
 			cout<<"borrower: ";
 			do

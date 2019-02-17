@@ -1,4 +1,4 @@
-## lib4console beta 1.4.0
+## lib4console beta 1.4.1
 
 a library manager at console
 
@@ -6,7 +6,7 @@ a library manager at console
 
 ### version content
 
-beta 1.4.0: change it to command style
+beta 1.4.1: improve the interaction
 
 ---
 
