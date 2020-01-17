@@ -7,7 +7,6 @@
 #include<cstdlib>
 #include<ctime>
 #include"libcore/library.h"
-#include"os.h"
 using namespace lib;
 using namespace std;
 bool saved=true;
@@ -35,17 +34,18 @@ void version(){
 		<<"GitHub address: https://github.com/lrcno6/lib4console\n";
 }
 bool main_menu(){
-	cout<<"lib4console > ";
+	cout<<"lib4console$ ";
 	string cmd;
 	getline(cmd,false);
-	call(cmd);
-	ifstream arg("command");
 	vector<string> argv;
-	while(arg){
-		string s;
-		getline(arg,s);
-		if(!s.empty())
-			argv.push_back(s);
+	size_t index=0;
+	while(index<cmd.size()){
+		auto index2=cmd.find_first_of(" \t\n\v\f\r",index);
+		if(index2==string::npos)
+			index2=cmd.size();
+		if(index2>index)
+			argv.push_back(cmd.substr(index,index2-index));
+		index=index2+1;
 	}
 	if(argv.empty())
 		return true;
